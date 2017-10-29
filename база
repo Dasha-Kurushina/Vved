@@ -1,0 +1,31 @@
+CREATE TABLE pok (
+	id INTEGER PRIMARY KEY, 
+	f text, 
+	i text,
+	o text,
+	age integer,
+	address text
+)
+
+create table mag (
+	id INTEGER PRIMARY KEY,
+	nazvanie text,
+	adress text
+)
+
+create table prodaja (
+	id INTEGER PRIMARY KEY,
+	id_pok references pok (id),
+	id_mag references mag (id),
+	tovar text,
+	kol_vo integer,
+	cena integer
+)
+
+INSERT INTO users 
+	(id, firstName, secondName) VALUES (NULL, "Guido", "van Rossum")
+
+INSERT INTO pok
+	(id, f, i, o, age, address) VALUES (1, "sasasa", "fdf", "gfgfg", 23, null)
+	
+select * from pok where age>20 
