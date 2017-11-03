@@ -15,7 +15,7 @@ def создать_frame_людей(parent,
 						поле_адреса,
 						функция_добавления_людей):
 	
-	frame_людей     = Frame(root,bd=5)
+	frame_людей     = Frame(parent,bd=5)
 	frame_людей.grid(row=row, column=column)     
                     #его      его
 	Label(frame_людей, text = "Фамилия:"          ).grid(row=0, column=0)
@@ -39,7 +39,7 @@ def создать_frame_магазина(parent,
 						   поле_адреса,
 						   функция_добавления_магазина):
 	
-	frame_магазина     = Frame(root,bd=5)
+	frame_магазина     = Frame(parent,bd=5)
 	frame_магазина.grid(row=row, column=column)     
 
 	Label(frame_магазина, text = "Название:"            ).grid(row=0, column=0)
@@ -60,7 +60,7 @@ def создать_frame_покупок(parent,
 						  поле_колва,
 						  функция_добавления_покупок):
 	
-	frame_покупок     = Frame(root,bd=5)
+	frame_покупок     = Frame(parent,bd=5)
 	frame_покупок.grid(row=row, column=column)     
                     #его      его
 	Label(frame_покупок, text = "Фамилия:"            ).grid(row=0, column=0)
@@ -84,12 +84,22 @@ def создать_frame_отчета(parent,
 						 row, #мое
 						 column, #мое
 						 columnspan,
-						 список_отчета=[
-						 	"'сидоров^семья^чай': {'цена': 4400, 'кол-во': 1}",
-							"'петров^пятерочка^яблоко': {'кол-во': 12, 'цена': 2350}"
-							]):
-	pass
+						 список_отчета):
+	def обновить_отчет():
+		отчет.delete(0, END)
+		for i in список_отчета:
+			отчет.insert(END,i)
 
+	frame_отчета     = Frame(parent,bd=5)
+	frame_отчета.grid(row=row, column=column, columnspan=columnspan)
+
+	отчет = Listbox(frame_отчета,height=15, width=50)
+
+	обновить_отчет()
+
+	отчет.pack(fill = 'both', expand = 1)
+
+	Button(frame_отчета, text='обновить', command = обновить_отчет).pack()
 
 # button1=Button(frame1,text=u'Первая кнопка')
 # button2=Button(frame2,text=u'Вторая кнопка')
@@ -138,5 +148,3 @@ if __name__ == '__main__':
 
 	root.mainloop()
 
-["'сидоров^семья^чай': {'цена': 4400, 'кол-во': 1}",
-"'петров^пятерочка^яблоко': {'кол-во': 12, 'цена': 2350}"]
